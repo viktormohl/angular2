@@ -8,21 +8,22 @@ import {ServerElementData} from './model/server-element.data';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  serverElements: ServerElementData[] = [{type: 'server', name: 'Testserver', content: 'Just a test!'}];
+  dummyServerElement: ServerElementData = {type: 'server', name: 'Testserver', content: 'Just a test!'};
+  serverElements: ServerElementData[] = [this.dummyServerElement];
 
-  onServerAdded(serverData: ServerData) {
-    this.serverElements.push({
-      type: 'server',
-      name: serverData.serverName,
-      content: serverData.serverContent
-    });
+  onServerAdded(data: ServerData) {
+    this.addToServerElements('server', data);
   }
 
-  onBlueprintAdded(blueprintData: ServerData) {
+  onBlueprintAdded(data: ServerData) {
+    this.addToServerElements('blueprint', data);
+  }
+
+  private addToServerElements(type: string, serverData: ServerData){
     this.serverElements.push({
-      type: 'blueprint',
-      name: blueprintData.serverName,
-      content: blueprintData.serverContent
+      type: type,
+      name: serverData.serverName,
+      content: serverData.serverContent
     });
   }
 

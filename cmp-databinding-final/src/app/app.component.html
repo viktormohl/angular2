@@ -8,6 +8,7 @@
     <div class="col-xs-12">
       <button class="btn btn-primary" (click)="onChangeFirst()">Change first Element</button>
       <button class="btn btn-danger" (click)="onDestroyFirst()">Destroy first Component</button>
+      <!-- user property binding with alias 'srvElement' to pass element down to 'app-server-element' -->
       <app-server-element
         *ngFor="let serverElement of serverElements"
         [srvElement]="serverElement"

@@ -7,10 +7,16 @@ import {ServerData} from '../model/server-data';
   styleUrls: ['./cockpit.component.css']
 })
 export class CockpitComponent implements OnInit {
+  /**
+   * Note: Property & event binding on 'HTML elements' (native properties & events),
+   * 'directives' (custom properties & events) and 'components' (custom properties & events)
+   */
+  // newServerName: string = '';
+  // newServerContent: string = '';
+
   @Output() serverCreated = new EventEmitter<ServerData>();
   @Output('bpCreated') blueprintCreated = new EventEmitter<ServerData>();
-  // newServerName = '';
-  // newServerContent = '';
+
   @ViewChild('serverContentInput', { static: false }) serverContentInput: ElementRef;
 
   constructor() { }

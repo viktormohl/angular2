@@ -15,6 +15,7 @@ import {
   ElementRef,
   ContentChild
 } from '@angular/core';
+import {ServerElementData} from '../model/server-element.data';
 
 @Component({
   selector: 'app-server-element',
@@ -31,7 +32,7 @@ export class ServerElementComponent implements
   AfterViewInit,
   AfterViewChecked,
   OnDestroy {
-  @Input('srvElement') element: {type: string, name: string, content: string};
+  @Input('srvElement') element: ServerElementData;
   @Input() name: string;
   @ViewChild('heading', {static: true}) header: ElementRef;
   @ContentChild('contentParagraph', {static: true}) paragraph: ElementRef;
