@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {ServerData} from './model/server-data';
+import {ServerElementData} from './model/server-element.data';
 
 @Component({
   selector: 'app-root',
@@ -6,9 +8,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  serverElements = [{type: 'server', name: 'Testserver', content: 'Just a test!'}];
+  serverElements: ServerElementData[] = [{type: 'server', name: 'Testserver', content: 'Just a test!'}];
 
-  onServerAdded(serverData: {serverName: string, serverContent: string}) {
+  onServerAdded(serverData: ServerData) {
     this.serverElements.push({
       type: 'server',
       name: serverData.serverName,
@@ -16,7 +18,7 @@ export class AppComponent {
     });
   }
 
-  onBlueprintAdded(blueprintData: {serverName: string, serverContent: string}) {
+  onBlueprintAdded(blueprintData: ServerData) {
     this.serverElements.push({
       type: 'blueprint',
       name: blueprintData.serverName,
