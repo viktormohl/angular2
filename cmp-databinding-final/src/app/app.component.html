@@ -1,4 +1,6 @@
 <div class="container">
+  <!-- custom event binding -->
+  <!-- get the data by '$event' from child component -->
   <app-cockpit
     (serverCreated)="onServerAdded($event)"
     (bpCreated)="onBlueprintAdded($event)"
@@ -8,13 +10,13 @@
     <div class="col-xs-12">
       <button class="btn btn-primary" (click)="onChangeFirst()">Change first Element</button>
       <button class="btn btn-danger" (click)="onDestroyFirst()">Destroy first Component</button>
-      <!-- user property binding with alias 'srvElement' to pass element down to 'app-server-element' -->
+      <!-- use property binding with alias 'srvElement' to pass element down to 'app-server-element' -->
       <app-server-element
         *ngFor="let serverElement of serverElements"
         [srvElement]="serverElement"
         [name]="serverElement.name">
         <p #contentParagraph>
-          <strong *ngIf="serverElement.type === 'server'" style="color: red">{{ serverElement.content }}</strong>
+          <strong *ngIf="serverElement.type === 'server'" style="color: #ff0000">{{ serverElement.content }}</strong>
           <em *ngIf="serverElement.type === 'blueprint'">{{ serverElement.content }}</em>
         </p>
       </app-server-element>
