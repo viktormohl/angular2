@@ -1,40 +1,45 @@
 <div class="row">
   <div class="col-xs-12">
     <h2>Add new Servers or blueprints!</h2>
+
+<!--    <label>Server Name</label>-->
+<!--    &lt;!&ndash; use 'two-way data binding' for getting the input from template into application &ndash;&gt;-->
+<!--    <input type="text" class="form-control" [(ngModel)]="newServerName">-->
+
+<!--    <label>Server Content</label>-->
+<!--    <input type="text" class="form-control" [(ngModel)]="newServerContent">-->
+
+<!--    <br>-->
+<!--    &lt;!&ndash; simply add some action listeners &ndash;&gt;-->
+<!--    <button-->
+<!--      class="btn btn-primary"-->
+<!--      (click)="onAddServer()">Add Server-->
+<!--    </button>-->
+<!--    <button-->
+<!--      class="btn btn-primary"-->
+<!--      (click)="onAddBlueprint()">Add Server Blueprint-->
+<!--    </button>-->
+
+
     <label>Server Name</label>
-    <!-- use 'two-way data binding' for getting the input from template into application -->
-    <input type="text" class="form-control" [(ngModel)]="newServerName">
-
-    <label>Server Content</label>
-    <input type="text" class="form-control" [(ngModel)]="newServerContent">
-
-    <br>
-    <!-- simply add some action listeners -->
-    <button
-      class="btn btn-primary"
-      (click)="onAddServer()">Add Server
-    </button>
-    <button
-      class="btn btn-primary"
-      (click)="onAddBlueprint()">Add Server Blueprint
-    </button>
-
-    <!--
-    <label>Server Name</label>
+    <!-- local reference introduced with #SomeName (eg: #serverNameInput) can place on any HTML-Element -->
+    <!-- local references holds reference to the whole HTML-Element -->
+    <!-- can be used everywhere in template (only in template), not inside typescripe code -->
     <input type="text" class="form-control" #serverNameInput>
 
     <label>Server Content</label>
     <input type="text" class="form-control" #serverContentInput>
 
     <br>
+    <!-- pass the HTML-Element to typescript code via local reference -->
     <button
       class="btn btn-primary"
-      (click)="onAddServer(serverNameInput)">Add Server
+      (click)="onAddServer(serverNameInput, serverContentInput)">Add Server
     </button>
     <button
       class="btn btn-primary"
-      (click)="onAddBlueprint(serverNameInput)">Add Server Blueprint
+      (click)="onAddBlueprint(serverNameInput, serverContentInput)">Add Server Blueprint
     </button>
-    -->
+
   </div>
 </div>

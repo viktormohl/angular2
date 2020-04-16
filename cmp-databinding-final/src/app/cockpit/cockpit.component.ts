@@ -11,9 +11,9 @@ export class CockpitComponent implements OnInit {
    * Note: Property & event binding on 'HTML elements' (native properties & events),
    * 'directives' (custom properties & events) and 'components' (custom properties & events)
    */
-  // properties for two-way-data-binding
-  newServerName = '';
-  newServerContent = '';
+  // // properties for two-way-data-binding
+  // newServerName = '';
+  // newServerContent = '';
   // custom event for passing data to parent component
   @Output() serverCreated = new EventEmitter<ServerData>();
   @Output('bpCreated') blueprintCreated = new EventEmitter<ServerData>();
@@ -25,34 +25,29 @@ export class CockpitComponent implements OnInit {
   ngOnInit() {
   }
 
-  onAddServer() {
-    // emitting the event ==> start communication between components
-    this.serverCreated.emit(this.createServerDataFromInput());
-  }
+  // // two-way-binding
+  // onAddServer() {
+  //   // emitting the event ==> start communication between components
+  //   this.serverCreated.emit(this.createServerDataFromInput(this.newServerName, this.newServerContent));
+  // }
+  //
+  // onAddBlueprint() {
+  //   this.blueprintCreated.emit(this.createServerDataFromInput(this.newServerName, this.newServerContent));
+  // }
 
-  onAddBlueprint() {
-    this.blueprintCreated.emit(this.createServerDataFromInput());
-  }
-
-  private createServerDataFromInput(): ServerData{
+  private createServerDataFromInput(serverName: string, serverContent: string): ServerData{
     return {
-      serverName: this.newServerName,
-      serverContent: this.newServerContent
+      serverName: serverName,
+      serverContent: serverContent
     };
   }
 
-  // onAddServer(nameInput: HTMLInputElement) {
-  //   this.serverCreated.emit({
-  //     serverName: nameInput.value,
-  //     serverContent: this.serverContentInput.nativeElement.value
-  //   });
-  // }
-  //
-  // onAddBlueprint(nameInput: HTMLInputElement) {
-  //   this.blueprintCreated.emit({
-  //     serverName: nameInput.value,
-  //     serverContent: this.serverContentInput.nativeElement.value
-  //   });
-  // }
+  onAddServer(nameInput: HTMLInputElement, contentInput: HTMLInputElement) {
+    this.serverCreated.emit(this.createServerDataFromInput(nameInput.value, contentInput.value));
+  }
+
+  onAddBlueprint(nameInput: HTMLInputElement, contentInput: HTMLInputElement) {
+    this.blueprintCreated.emit(this.createServerDataFromInput(nameInput.value, contentInput.value));
+  }
 
 }
