@@ -3,6 +3,8 @@
   <!--<div class="panel-heading">{{ element.name }}</div>-->
   <div class="panel-heading" #heading>{{ name }}</div>
   <div class="panel-body">
+    <!-- projecting content into components with ng-content -->
+    <!-- a hook for angular to place content, witch will be found between opening and closing tag -->
     <ng-content></ng-content>
   </div>
 </div>
