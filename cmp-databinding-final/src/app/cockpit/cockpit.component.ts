@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output, ViewChild, ElementRef } from '@angular/core';
+import {Component, OnInit, EventEmitter, Output, ViewChild, ElementRef} from '@angular/core';
 import {ServerData} from '../model/server-data';
 
 @Component({
@@ -8,19 +8,28 @@ import {ServerData} from '../model/server-data';
 })
 export class CockpitComponent implements OnInit {
   /**
-   * Note: Property & event binding on 'HTML elements' (native properties & events),
+   * 3 kind of data binding: Property & event binding on 'HTML elements' (native properties & events),
    * 'directives' (custom properties & events) and 'components' (custom properties & events)
    */
-  // // properties for two-way-data-binding
-  // newServerName = '';
-  // newServerContent = '';
-  // custom event for passing data to parent component
+    // custom event for passing data to parent component
   @Output() serverCreated = new EventEmitter<ServerData>();
   @Output('bpCreated') blueprintCreated = new EventEmitter<ServerData>();
 
-  // @ViewChild('serverContentInput', { static: false }) serverContentInput: ElementRef;
+  // // properties for two-way-data-binding
+  // newServerName = '';
+  // newServerContent = '';
 
-  constructor() { }
+  // @Angular9+ add { static: true }
+  // The following selectors are supported.
+  // * Any class with the `@Component` or `@Directive` decorator
+  // * A template reference variable as a string (e.g. query `<my-component #cmp></my-component>` with `@ViewChild('cmp')`)
+  // NOT DIRECTLY CHANGE HTML-Element via:  this.serverNameInput.nativeElement.value = 'newValue'
+  // use string interpolation oder property binding instead
+  @ViewChild('serverNameInput', {static: true}) serverNameInput: ElementRef;
+  @ViewChild('serverContentInput', {static: true}) serverContentInput: ElementRef;
+
+  constructor() {
+  }
 
   ngOnInit() {
   }
@@ -35,19 +44,34 @@ export class CockpitComponent implements OnInit {
   //   this.blueprintCreated.emit(this.createServerDataFromInput(this.newServerName, this.newServerContent));
   // }
 
-  private createServerDataFromInput(serverName: string, serverContent: string): ServerData{
+  private createServerDataFromInput(serverName: string, serverContent: string): ServerData {
     return {
       serverName: serverName,
       serverContent: serverContent
     };
   }
 
-  onAddServer(nameInput: HTMLInputElement, contentInput: HTMLInputElement) {
-    this.serverCreated.emit(this.createServerDataFromInput(nameInput.value, contentInput.value));
+  // // local preferences
+  // onAddServer(nameInput: HTMLInputElement, contentInput: HTMLInputElement) {
+  //   this.serverCreated.emit(this.createServerDataFromInput(nameInput.value, contentInput.value));
+  // }
+  //
+  // onAddBlueprint(nameInput: HTMLInputElement, contentInput: HTMLInputElement) {
+  //   this.blueprintCreated.emit(this.createServerDataFromInput(nameInput.value, contentInput.value));
+  // }
+
+
+  // local preferences & @ViewChild
+  onAddServer() {
+    this.serverCreated.emit(this.createServerDataFromInput(
+      this.serverNameInput.nativeElement.value,
+      this.serverContentInput.nativeElement.value));
   }
 
   onAddBlueprint(nameInput: HTMLInputElement, contentInput: HTMLInputElement) {
-    this.blueprintCreated.emit(this.createServerDataFromInput(nameInput.value, contentInput.value));
+    this.blueprintCreated.emit(this.createServerDataFromInput(
+      this.serverNameInput.nativeElement.value,
+      this.serverContentInput.nativeElement.value));
   }
 
 }
