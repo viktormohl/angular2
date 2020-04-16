@@ -36,6 +36,7 @@ export class ServerElementComponent implements
   @Input() name: string;
   /** lifecycle hooks and template access */
   @ViewChild('heading', {static: true}) header: ElementRef;
+  /** getting access to ng-content with @ContendChild */
   @ContentChild('contentParagraph', {static: true}) paragraph: ElementRef;
 
   constructor() {
@@ -51,7 +52,9 @@ export class ServerElementComponent implements
   /** Called once the component is initialized */
   ngOnInit() {
     console.log('ngOnInit called!');
+    // not available yet
     console.log('Text Content: ' + this.header.nativeElement.textContent);
+    // not available yet
     console.log('Text Content of paragraph: ' + this.paragraph.nativeElement.textContent);
   }
 
@@ -63,7 +66,7 @@ export class ServerElementComponent implements
   /** Called after content (ng-content) has been projected into view */
   ngAfterContentInit() {
     console.log('ngAfterContentInit called!');
-    // not available yet
+    // only available after content init
     console.log('Text Content of paragraph: ' + this.paragraph.nativeElement.textContent);
   }
 
@@ -77,6 +80,7 @@ export class ServerElementComponent implements
     console.log('ngAfterViewInit called!');
     // only available after view init
     console.log('Text Content: ' + this.header.nativeElement.textContent);
+    console.log('Text Content of paragraph: ' + this.paragraph.nativeElement.textContent);
   }
 
   /** Called every time the view (and child views) have been checked */

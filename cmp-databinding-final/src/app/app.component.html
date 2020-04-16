@@ -17,7 +17,7 @@
         [name]="serverElement.name">
         <!-- NOTE: normally content between opening and closing tag of custom component will be ignored by angular -->
         <!-- user 'ng-content' tag in custom component to avoid this behavior -->
-        <p #contentParagraph>
+        <p #contentParagraph> <!-- getting access to ng-content with @ContendChild -->
           <strong *ngIf="serverElement.type === 'server'" style="color: #ff0000">{{ serverElement.content }}</strong>
           <em *ngIf="serverElement.type === 'blueprint'">{{ serverElement.content }}</em>
         </p>
