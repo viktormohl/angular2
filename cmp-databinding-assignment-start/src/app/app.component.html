@@ -15,6 +15,8 @@
     </div>
   </div>
   <div class="row">
-    <app-game-control></app-game-control>
+    <app-game-control (incremented)="onIncrementNumber($event)"></app-game-control>
+    <app-even *ngIf="isEven()" [incrementNumber]="incrementNumber"></app-even>
+    <app-odd *ngIf="!isEven()" [incrementNumber]="incrementNumber"></app-odd>
   </div>
 </div>
