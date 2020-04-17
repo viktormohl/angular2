@@ -7,16 +7,18 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  incrementNumber: number;
-  /** gerade Zahl */
-  even: boolean;
+  eventNumbers: number[] = [];
+  oddNumbers: number[] = [];
 
   onIncrementNumber(incrementNumber: number) {
-    this.incrementNumber = incrementNumber;
-    this.even = incrementNumber % 2 === 0;
+    if(this.isEven(incrementNumber)){
+      this.eventNumbers.push(incrementNumber);
+    } else {
+      this.oddNumbers.push(incrementNumber);
+    }
   }
 
-  isEven(): boolean{
-    return this.even;
+  private isEven(number: number): boolean {
+    return number % 2 === 0;
   }
 }

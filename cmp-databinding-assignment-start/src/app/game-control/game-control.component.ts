@@ -1,11 +1,11 @@
-import {AfterViewInit, Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-game-control',
   templateUrl: './game-control.component.html',
   styleUrls: ['./game-control.component.css']
 })
-export class GameControlComponent implements OnInit, AfterViewInit {
+export class GameControlComponent implements OnInit {
 
   /** timer reference */
   private intervalID: number;
@@ -15,13 +15,10 @@ export class GameControlComponent implements OnInit, AfterViewInit {
   @Output('incremented') incremented = new EventEmitter<number>();
 
   constructor() {
+    this.incrementNumber = -1;
   }
 
   ngOnInit(): void {
-  }
-
-  ngAfterViewInit(){
-    this.reset();
   }
 
   onStart() {
